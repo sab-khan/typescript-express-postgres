@@ -1,7 +1,7 @@
 export interface IAppConfig {
   name: string;
-  port: number | undefined;
-  nodeEnv: 'development' | 'production' | 'test' | undefined;
+  port: number;
+  nodeEnv: string;
 }
 
 export interface IDatabaseConfig {

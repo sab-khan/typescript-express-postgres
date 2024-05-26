@@ -1,15 +1,16 @@
 {
-  "name": "typesciprt-express-postgre",
+  "name": "typescript-express-postgre",
   "version": "1.0.0",
   "author": "Abdul Saboor Khan",
   "license": "MIT",
   "engines": {
-    "node": ">=18 <19"
+    "node": ">=18"
   },
   "scripts": {
     "build": "tsc",
     "start": "nodemon src/server.ts",
     "start:prod": "pm2 start dist/server.js",
+    "lint": "eslint */**/*.ts --ignore-pattern node_modules/",
     "prettify": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "prepare": "husky"
   },
@@ -19,9 +20,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,json,css,scss,md}": [
-      "eslint --fix",
-      "prettier --write"
+    "**/*.{ts,json}": [
+      "eslint",
+      "prettier --ignore-path ./.prettierignore --write"
     ]
   },
   "dependencies": {
@@ -34,8 +35,9 @@
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-prettier-config": "^1.0.1",
+    "eslint-plugin-prettier": "^5.1.3",
     "husky": "^9.0.11",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
