@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { ILogLevels, ILogColors } from 'types/interfaces';
+import { ILogLevels, ILogColors } from '@type/interfaces';
 import { appConfig } from './app';
 
 const levels: ILogLevels = {
@@ -10,12 +10,6 @@ const levels: ILogLevels = {
   debug: 4,
 };
 
-const level = () => {
-  const env = appConfig.nodeEnv;
-  const isDevelopment = env === 'development';
-  return isDevelopment ? 'debug' : 'warn';
-};
-
 const colors: ILogColors = {
   error: 'red',
   warn: 'yellow',
@@ -24,9 +18,26 @@ const colors: ILogColors = {
   debug: 'white',
 };
 
+const level = () => {
+  const env = appConfig.nodeEnv;
+  const isDevelopment = env === 'development';
+  return isDevelopment ? 'debug' : 'info';
+};
+
+const stackedErrorFormat = winston.format((info) => {
+  if (info instanceof Error) {
+    info = {
+      ...info,
+      message: info.stack,
+    };
+  }
+  return info;
+});
+
 winston.addColors(colors);
 
 const format = winston.format.combine(
+  stackedErrorFormat(),
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
   winston.format.printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`),
 );
