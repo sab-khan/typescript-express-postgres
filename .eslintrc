@@ -6,14 +6,15 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript", 
     "prettier"
   ],
   "rules": {
+    "import/no-unresolved": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "no-console": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "import/no-unresolved": "error"
+    "@typescript-eslint/no-empty-function": "off"
   },
   "settings": {
     "import/parsers": {
@@ -23,6 +24,9 @@
       "typescript": {
         "alwaysTryTypes": true, 
         "project": "./tsconfig.json"
+      },
+      "node": {
+        "extensions": [".js", ".ts"]
       }
     }
   }

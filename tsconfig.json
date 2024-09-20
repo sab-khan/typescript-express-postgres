@@ -6,28 +6,26 @@
     "noLib": false,                                      
     "module": "commonjs", 
     "moduleResolution": "node",                                                
-    "baseUrl": "./src", 
+    "baseUrl": ".", 
     // TODO: fix paths in future. for now using simple relative paths
-    // "paths": {
-    //   "@app": ["app/"],
-    //   "@app/*": ["app/*"],
-    //   "@common": ["common/"],
-    //   "@common/*": ["common/*"],
-    //   "@config": ["config/"],
-    //   "@config/*": ["config/*"],
-    //   "@type": ["types/"],
-    //   "@type/*": ["types/*"]
-    // },                                                  
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@common/*": ["src/common/*"],
+      "@config/*": ["src/config/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@type/*": ["src/types/*"]
+    },                                                  
     "allowJs": false,                                    
     "sourceMap": true,                                  
     "outDir": "./dist",                                  
-    "esModuleInterop": true,                             
+    "esModuleInterop": true,  
+    "resolveJsonModule": true,                           
     "forceConsistentCasingInFileNames": true,            
     "strict": true,                                      
     "noImplicitAny": true,                               
     "useUnknownInCatchVariables": false,                 
     "skipLibCheck": true                               
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts","env.d.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
