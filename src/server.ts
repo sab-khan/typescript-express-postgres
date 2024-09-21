@@ -4,8 +4,8 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import morgan from './config/morgan';
 import { appConfig } from './config/app';
-import errorMiddleware from '@middlewares/error.middleware';
-import ApiError from './common/utils/error.util';
+import errorMiddleware from '@middlewares/error';
+import ApiError from './common/utils/api-error';
 
 dotenv.config();
 

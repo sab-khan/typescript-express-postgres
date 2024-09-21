@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import morgan, { StreamOptions } from 'morgan';
-import Logger from './logger';
-import { appConfig } from './app';
+import Logger from '@config/logger';
+import { appConfig } from '@config/app';
 
 const getIpFormat = (): string => (appConfig.nodeEnv === 'production' ? ':remote-addr ' : '');
 

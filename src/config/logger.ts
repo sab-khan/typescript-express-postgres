@@ -1,6 +1,6 @@
 import winston from 'winston';
 import { ILogLevels, ILogColors } from '@type/interfaces';
-import { appConfig } from './app';
+import { appConfig } from '@config/app';
 
 const levels: ILogLevels = {
   error: 0,
