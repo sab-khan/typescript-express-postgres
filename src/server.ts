@@ -1,10 +1,10 @@
 import * as dotenv from 'dotenv';
 
-import express from 'express';
+import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import morgan from './config/morgan';
 import { appConfig } from './config/app';
-import errorMiddleware from './middlewares/error.middleware';
+import errorMiddleware from '@middlewares/error.middleware';
 import ApiError from './common/utils/error.util';
 
 dotenv.config();
@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 // error handler
 app.use(errorMiddleware);
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   throw new ApiError(501, 'Not Implemented');
   res.send('Hello World!');
 });
