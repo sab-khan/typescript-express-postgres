@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "nodemon -r ./bootstrap.js",
+    "start": "nodemon -e ts,js --exec ts-node src/server.ts",
     "start:prod": "pm2 start dist/server.js --name typescript-express-postgre",
     "stop:prod": "pm2 stop typescript-express-postgre",
     "lint": "eslint */**/*.ts --ignore-pattern node_modules/",
