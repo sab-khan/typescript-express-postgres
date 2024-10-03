@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { appConfig } from '@config/app';
-import Logger from '@config/logger';
 import ApiError from '@common/utils/api-error';
+import logger from '@config/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const errorMiddleware = (err: Error | ApiError, req: Request, res: Response, next: NextFunction) => {
@@ -14,10 +14,10 @@ const errorMiddleware = (err: Error | ApiError, req: Request, res: Response, nex
 
   // Assign error message to res object to be used
   // by other middlewares or the route handler.
-  res.locals.errorMsg = err.message;
+  res.locals.errorMessage = err.message;
 
   if (appConfig.nodeEnv === 'development') {
-    Logger.error(err);
+    logger.error(err);
   }
 
   // Handle the error response

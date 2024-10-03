@@ -1,6 +1,6 @@
 declare namespace Express {
   export interface Response {
-    errorMsg: string;
+    errorMessage: string;
   }
 }
 

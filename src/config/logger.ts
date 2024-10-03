@@ -2,6 +2,8 @@ import winston from 'winston';
 import { ILogLevels, ILogColors } from '@type/interfaces';
 import { appConfig } from '@config/app';
 
+const { combine, timestamp, printf, colorize, uncolorize, errors } = winston.format;
+
 const levels: ILogLevels = {
   error: 0,
   warn: 1,
@@ -18,46 +20,40 @@ const colors: ILogColors = {
   debug: 'white',
 };
 
-const level = () => {
-  const env = appConfig.nodeEnv;
-  const isDevelopment = env === 'development';
-  return isDevelopment ? 'debug' : 'info';
-};
-
-const stackedErrorFormat = winston.format((info) => {
-  if (info instanceof Error) {
-    info = {
-      ...info,
-      message: info.stack,
-    };
-  }
-  return info;
-});
-
 winston.addColors(colors);
 
-const format = winston.format.combine(
-  stackedErrorFormat(),
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-  winston.format.printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`),
+const format = combine(
+  timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+  printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`),
+);
+
+const errorStackFormat = combine(
+  timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+  errors({ stack: true }),
+  printf(({ timestamp, level, message, stack }) => `${timestamp} ${level}: ${stack || message}`),
 );
 
 const transports = [
   new winston.transports.Console({
-    format: winston.format.combine(winston.format.colorize({ all: true }), format),
+    format: combine(colorize(), errorStackFormat),
+  }),
+  new winston.transports.File({
+    filename: 'logs/all.log',
+    level: 'info',
+    format: combine(uncolorize(), format),
   }),
   new winston.transports.File({
     filename: 'logs/error.log',
     level: 'error',
+    format: combine(uncolorize(), errorStackFormat),
   }),
-  new winston.transports.File({ filename: 'logs/all.log' }),
 ];
 
-const Logger = winston.createLogger({
-  level: level(),
+const logger = winston.createLogger({
+  level: appConfig.nodeEnv === 'development' ? 'debug' : 'info',
   levels,
-  format,
+  format: errorStackFormat,
   transports,
 });
 
-export default Logger;
+export default logger;

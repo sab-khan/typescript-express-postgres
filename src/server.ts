@@ -1,13 +1,12 @@
 import * as dotenv from 'dotenv';
-
-import express, { Request, Response } from 'express';
-import helmet from 'helmet';
-import morgan from './config/morgan';
-import { appConfig } from './config/app';
-import errorMiddleware from '@middlewares/error';
-import ApiError from './common/utils/api-error';
-
 dotenv.config();
+
+import express, { NextFunction, Request, Response } from 'express';
+import helmet from 'helmet';
+import morgan from '@config/morgan';
+import { appConfig } from '@config/app';
+import errorMiddleware from '@middlewares/error';
+import ApiError from '@common/utils/api-error';
 
 const app = express();
 
@@ -19,8 +18,7 @@ if (appConfig.reverseProxy === 'true') {
 }
 
 if (appConfig.nodeEnv !== 'test') {
-  app.use(morgan.successHandler);
-  app.use(morgan.errorHandler);
+  app.use(morgan.httpResponseHandler);
 }
 
 // security headers
@@ -32,13 +30,15 @@ app.use(express.json());
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.get('/', async (req: Request, res: Response, next: NextFunction) => {
+  const error = new ApiError(503, 'An error occurred!');
+  next(error);
+  //res.status(200).json({ message: 'Hello World!' });
+});
+
 // error handler
 app.use(errorMiddleware);
-
-app.get('/', (req: Request, res: Response) => {
-  throw new ApiError(501, 'Not Implemented');
-  res.send('Hello World!');
-});
 
 app.listen(appConfig.port, () => {
   console.log(`Server running on http://localhost:${appConfig.port}`);
