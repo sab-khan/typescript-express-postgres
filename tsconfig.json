@@ -6,12 +6,12 @@
     "noLib": false,                                      
     "module": "commonjs", 
     "moduleResolution": "node",                                                
-    "baseUrl": "./src", 
+    "baseUrl": ".", 
     "paths": {
-      "@common/*": ["common/*"],
-      "@config/*": ["config/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@type/*": ["types/*"]
+      "@common/*": ["src/common/*"],
+      "@config/*": ["src/config/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@type/*": ["src/types/*"]
     },                                                  
     "allowJs": false,                                    
     "sourceMap": true,                                  
