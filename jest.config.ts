@@ -9,7 +9,7 @@ export default {
     prefix: '<rootDir>/',
   }),
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/logs/'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
