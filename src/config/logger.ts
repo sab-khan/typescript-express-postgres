@@ -1,6 +1,6 @@
 import winston from 'winston';
 import { ILogLevels, ILogColors } from '@type/interfaces';
-import { appConfig } from '@config/app';
+import { appConfig } from '@config/config';
 
 const { combine, timestamp, printf, colorize, uncolorize, errors } = winston.format;
 

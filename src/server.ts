@@ -4,7 +4,7 @@ dotenv.config();
 import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import morgan from '@config/morgan';
-import { appConfig } from '@config/app';
+import { appConfig } from '@config/config';
 import errorMiddleware from '@middlewares/error';
 import ApiError from '@common/utils/api-error';
 
