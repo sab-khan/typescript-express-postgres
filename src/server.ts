@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import morgan from '@config/morgan';
 import { appConfig } from '@config/config';
 import errorMiddleware from '@middlewares/error';
-import ApiError from '@common/utils/api-error';
+import ApiError from '@utils/api-error';
 
 const app = express();
 

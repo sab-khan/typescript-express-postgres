@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { appConfig } from '@config/config';
-import ApiError from '@common/utils/api-error';
+import ApiError from '@utils/api-error';
 import logger from '@config/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

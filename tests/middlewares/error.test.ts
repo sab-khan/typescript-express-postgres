@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 import httpMocks from 'node-mocks-http';
 import { StatusCodes } from 'http-status-codes';
 import errorMiddleware from '@middlewares/error';
-import ApiError from '@common/utils/api-error';
+import ApiError from '@utils/api-error';
 import logger from '@config/logger';
 import { appConfig } from '@config/config';
 

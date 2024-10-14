@@ -1,4 +1,4 @@
-import { AppConfig } from '../types/interfaces';
+import { AppConfig } from '@interfaces/config';
 
 export const appConfig: AppConfig = {
   name: process.env.APP_NAME || 'Typescript Express Postgres REST API',

@@ -8,10 +8,10 @@
     "moduleResolution": "node",                                                
     "baseUrl": ".", 
     "paths": {
-      "@common/*": ["src/common/*"],
+      "@utils/*": ["src/utils/*"],
       "@config/*": ["src/config/*"],
       "@middlewares/*": ["src/middlewares/*"],
-      "@type/*": ["src/types/*"]
+      "@interfaces/*": ["src/interfaces/*"]
     },                                                  
     "allowJs": false,                                    
     "sourceMap": true,                                  
