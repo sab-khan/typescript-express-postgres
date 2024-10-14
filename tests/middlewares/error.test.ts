@@ -1,10 +1,10 @@
 import { NextFunction } from 'express';
 import httpMocks from 'node-mocks-http';
 import { StatusCodes } from 'http-status-codes';
-import errorMiddleware from '@middlewares/error';
+import errorMiddleware from '@middlewares/error.middleware';
 import ApiError from '@utils/api-error';
-import logger from '@config/logger';
-import { appConfig } from '@config/config';
+import logger from '@config/logger.config';
+import { appConfig } from '@config/main.config';
 
 describe('Error Middleware', () => {
   beforeEach(() => {
