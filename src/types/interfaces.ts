@@ -1,18 +1,18 @@
-export interface IAppConfig {
+export interface AppConfig {
   name: string;
   port: number;
   nodeEnv: string;
   reverseProxy: string;
 }
 
-export interface IDatabaseConfig {
+export interface DatabaseConfig {
   user: string;
   password: string;
   name: string;
   url: string;
 }
 
-export interface ILogLevels {
+export interface LogLevels {
   [key: string]: number;
   error: number;
   warn: number;
@@ -21,7 +21,7 @@ export interface ILogLevels {
   debug: number;
 }
 
-export interface ILogColors {
+export interface LogColors {
   [key: string]: string;
   error: string;
   warn: string;

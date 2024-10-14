@@ -1,10 +1,10 @@
 import winston from 'winston';
-import { ILogLevels, ILogColors } from '@type/interfaces';
+import { LogLevels, LogColors } from '@type/interfaces';
 import { appConfig } from '@config/config';
 
 const { combine, timestamp, printf, colorize, uncolorize, errors } = winston.format;
 
-const levels: ILogLevels = {
+const levels: LogLevels = {
   error: 0,
   warn: 1,
   info: 2,
@@ -12,7 +12,7 @@ const levels: ILogLevels = {
   debug: 4,
 };
 
-const colors: ILogColors = {
+const colors: LogColors = {
   error: 'red',
   warn: 'yellow',
   info: 'green',
