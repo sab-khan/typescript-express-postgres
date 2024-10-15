@@ -5,7 +5,7 @@ import ApiError from '@utils/api-error';
 import logger from '@config/logger.config';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const errorMiddleware = (err: Error | ApiError, req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err: Error | ApiError, req: Request, res: Response, next: NextFunction) => {
   let statusCode;
 
   if (err instanceof ApiError && err.statusCode) {
@@ -36,4 +36,4 @@ const errorMiddleware = (err: Error | ApiError, req: Request, res: Response, nex
   });
 };
 
-export default errorMiddleware;
+export default errorHandler;

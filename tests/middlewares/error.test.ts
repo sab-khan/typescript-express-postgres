@@ -1,7 +1,7 @@
 import { NextFunction } from 'express';
 import httpMocks from 'node-mocks-http';
 import { StatusCodes } from 'http-status-codes';
-import errorMiddleware from '@middlewares/error.middleware';
+import errorHandler from '@middlewares/error.middleware';
 import ApiError from '@utils/api-error';
 import logger from '@config/logger.config';
 import { appConfig } from '@config/main.config';
@@ -18,7 +18,7 @@ describe('Error Middleware', () => {
     const next: NextFunction = jest.fn();
     const spyOnSend = jest.spyOn(res, 'send');
 
-    errorMiddleware(error, req, res, next);
+    errorHandler(error, req, res, next);
 
     expect(spyOnSend).toHaveBeenCalledWith(expect.objectContaining({ code: error.statusCode, message: error.message }));
     expect(res.locals.errorMessage).toBe(error.message);
@@ -33,7 +33,7 @@ describe('Error Middleware', () => {
 
     appConfig.nodeEnv = 'production';
 
-    errorMiddleware(error, req, res, next);
+    errorHandler(error, req, res, next);
 
     expect(spyOnSend).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -51,7 +51,7 @@ describe('Error Middleware', () => {
     const res = httpMocks.createResponse();
     const next: NextFunction = jest.fn();
 
-    errorMiddleware(error, req, res, next);
+    errorHandler(error, req, res, next);
 
     expect(res.locals.errorMessage).toBe(error.message);
   });
@@ -64,7 +64,7 @@ describe('Error Middleware', () => {
 
     appConfig.nodeEnv = 'development';
 
-    errorMiddleware(error, req, res, next);
+    errorHandler(error, req, res, next);
 
     expect(logger.error).toHaveBeenCalled();
 
@@ -80,7 +80,7 @@ describe('Error Middleware', () => {
 
     appConfig.nodeEnv = 'development';
 
-    errorMiddleware(error, req, res, next);
+    errorHandler(error, req, res, next);
 
     expect(spyOnSend).toHaveBeenCalledWith(
       expect.objectContaining({

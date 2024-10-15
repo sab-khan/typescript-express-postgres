@@ -7,8 +7,8 @@ import compression from 'compression';
 import cors from 'cors';
 import morgan from '@config/morgan.config';
 import { appConfig } from '@config/main.config';
-import errorMiddleware from '@middlewares/error.middleware';
-import xssSanitizeMiddleware from '@middlewares/xss-sanitize.middleware';
+import errorHandler from '@middlewares/error.middleware';
+import xssSanitize from '@middlewares/xss-sanitize.middleware';
 import ApiError from '@utils/api-error';
 
 const app = express();
@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 // sanitize request body data
-app.use(xssSanitizeMiddleware);
+app.use(xssSanitize);
 
 // enable cors
 app.use(cors());
@@ -51,7 +51,7 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // error handler
-app.use(errorMiddleware);
+app.use(errorHandler);
 
 app.listen(appConfig.port, () => {
   console.log(`Server running on http://localhost:${appConfig.port}`);
