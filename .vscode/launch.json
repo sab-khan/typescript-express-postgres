@@ -8,7 +8,7 @@
             "skipFiles": [
                 "<node_internals>\\**"
             ],
-            "program": "${workspaceFolder}\\src\\server.ts",  // Path to your main TypeScript file
+            "program": "${workspaceFolder}\\src\\index.ts",  // Path to your main TypeScript file
             "runtimeArgs": [
                 "-r", "ts-node/register",          // Register ts-node to handle TypeScript files
                 "-r", "tsconfig-paths/register"    // Register tsconfig-paths to resolve path aliases

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "nodemon -e ts,js --exec ts-node src/server.ts",
+    "start": "nodemon -e ts,js --exec ts-node src/index.ts",
     "start:prod": "pm2 start dist/server.js --name typescript-express-postgre",
     "stop:prod": "pm2 stop typescript-express-postgre",
     "lint": "eslint */**/*.ts --ignore-pattern node_modules/",
@@ -35,7 +35,10 @@
     "helmet": "^7.1.0",
     "http-status-codes": "^2.3.0",
     "morgan": "^1.10.0",
+    "pg": "^8.13.0",
     "pm2": "^5.4.2",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20",
     "winston": "^3.14.2",
     "xss": "^1.0.15"
   },

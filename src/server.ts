@@ -9,7 +9,8 @@ import morgan from '@config/morgan.config';
 import { appConfig } from '@config/app.config';
 import errorHandler from '@middlewares/error.middleware';
 import xssSanitize from '@middlewares/xss-sanitize.middleware';
-import ApiError from '@utils/api-error';
+import { AppDataSource } from '../ormconfig';
+import { Users } from '@entities/users.entity';
 
 const app = express();
 
@@ -45,16 +46,12 @@ app.options('*', cors());
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  const error = new ApiError(503, 'An error occurred!');
-  next(error);
-  //res.status(200).json({ message: 'Hello World!' });
+  const userRepo = AppDataSource.getRepository(Users);
+  const users = await userRepo.find();
+  res.status(200).send(users);
 });
 
 // error handler
 app.use(errorHandler);
-
-app.listen(appConfig.port, () => {
-  console.log(`Server running on http://localhost:${appConfig.port}`);
-});
 
 export default app;
