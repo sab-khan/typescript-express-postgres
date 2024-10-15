@@ -1,6 +1,6 @@
 import { NextFunction } from 'express';
 import httpMocks from 'node-mocks-http';
-import xssSanitizeMiddleware from '@middlewares/xss-sanitize.middleware';
+import xssSanitize from '@middlewares/xss-sanitize.middleware';
 
 describe('XSS Sanitize Middleware', () => {
   test('should return next if request body is undefined', () => {
@@ -8,7 +8,7 @@ describe('XSS Sanitize Middleware', () => {
     const res = httpMocks.createResponse();
     const next: NextFunction = jest.fn();
 
-    xssSanitizeMiddleware(req, res, next);
+    xssSanitize(req, res, next);
 
     expect(next).toHaveBeenCalled();
   });
@@ -20,7 +20,7 @@ describe('XSS Sanitize Middleware', () => {
     const res = httpMocks.createResponse();
     const next: NextFunction = jest.fn();
 
-    xssSanitizeMiddleware(req, res, next);
+    xssSanitize(req, res, next);
 
     expect(next).toHaveBeenCalled();
   });
@@ -34,7 +34,7 @@ describe('XSS Sanitize Middleware', () => {
     const res = httpMocks.createResponse();
     const next: NextFunction = jest.fn();
 
-    xssSanitizeMiddleware(req, res, next);
+    xssSanitize(req, res, next);
 
     expect(req.body).toEqual({ name: '&lt;script&gt;alert("XSS Attack")&lt;/script&gt;' });
   });
