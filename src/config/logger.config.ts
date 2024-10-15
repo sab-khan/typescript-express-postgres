@@ -1,6 +1,6 @@
 import winston from 'winston';
 import { LogLevels, LogColors } from '@interfaces/logger.interface';
-import { appConfig } from '@config/main.config';
+import { appConfig } from '@config/app.config';
 
 const { combine, timestamp, printf, colorize, uncolorize, errors } = winston.format;
 

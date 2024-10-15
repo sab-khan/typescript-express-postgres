@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 import morgan from '@config/morgan.config';
-import { appConfig } from '@config/main.config';
+import { appConfig } from '@config/app.config';
 import errorHandler from '@middlewares/error.middleware';
 import xssSanitize from '@middlewares/xss-sanitize.middleware';
 import ApiError from '@utils/api-error';

@@ -6,8 +6,9 @@ export interface AppConfig {
 }
 
 export interface DatabaseConfig {
+  host: string;
+  port: number;
   user: string;
   password: string;
   name: string;
-  url: string;
 }

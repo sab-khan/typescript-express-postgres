@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { appConfig } from '@config/main.config';
+import { appConfig } from '@config/app.config';
 import ApiError from '@utils/api-error';
 import logger from '@config/logger.config';
 

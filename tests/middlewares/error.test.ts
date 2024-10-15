@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import errorHandler from '@middlewares/error.middleware';
 import ApiError from '@utils/api-error';
 import logger from '@config/logger.config';
-import { appConfig } from '@config/main.config';
+import { appConfig } from '@config/app.config';
 
 describe('Error Middleware', () => {
   beforeEach(() => {

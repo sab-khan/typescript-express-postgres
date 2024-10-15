@@ -1,6 +1,6 @@
 import morgan, { StreamOptions } from 'morgan';
 import logger from '@config/logger.config';
-import { appConfig } from '@config/main.config';
+import { appConfig } from '@config/app.config';
 
 const format =
   appConfig.nodeEnv === 'production'
