@@ -3,6 +3,8 @@ dotenv.config();
 
 import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
+import compression from 'compression';
+import cors from 'cors';
 import morgan from '@config/morgan.config';
 import { appConfig } from '@config/main.config';
 import errorMiddleware from '@middlewares/error.middleware';
@@ -25,10 +27,17 @@ if (appConfig.nodeEnv !== 'test') {
 app.use(helmet());
 
 // parse json request body
-app.use(express.json());
+app.use(express.json({ limit: '100kb' }));
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+
+// gzip compression
+app.use(compression());
+
+// enable cors
+app.use(cors());
+app.options('*', cors());
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
