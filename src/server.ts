@@ -8,6 +8,7 @@ import cors from 'cors';
 import morgan from '@config/morgan.config';
 import { appConfig } from '@config/main.config';
 import errorMiddleware from '@middlewares/error.middleware';
+import xssSanitizeMiddleware from '@middlewares/xss-sanitize.middleware';
 import ApiError from '@utils/api-error';
 
 const app = express();
@@ -34,6 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // gzip compression
 app.use(compression());
+
+// sanitize request body data
+app.use(xssSanitizeMiddleware);
 
 // enable cors
 app.use(cors());
