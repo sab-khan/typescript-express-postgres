@@ -1,0 +1,9 @@
+dist
+node_module
+package.json
+README.md
+tsconfig.json
+
+.vscode
+.eslintrc
+.prettierrc
