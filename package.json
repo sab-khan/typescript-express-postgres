@@ -8,13 +8,14 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "nodemon -e ts,js --exec ts-node src/index.ts",
+    "start": "nodemon -e ts,js --exec ts-node ./src/index.ts",
     "start:prod": "pm2 start dist/server.js --name typescript-express-postgre",
     "stop:prod": "pm2 stop typescript-express-postgre",
     "lint": "eslint */**/*.ts --ignore-pattern node_modules/",
     "prettify": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "husky": {
     "hooks": {

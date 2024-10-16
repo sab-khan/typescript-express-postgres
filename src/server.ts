@@ -10,7 +10,7 @@ import { appConfig } from '@config/app.config';
 import errorHandler from '@middlewares/error.middleware';
 import xssSanitize from '@middlewares/xss-sanitize.middleware';
 import { AppDataSource } from '../ormconfig';
-import { Users } from '@entities/users.entity';
+import { User } from '@entitiesuser.entity';
 
 const app = express();
 
@@ -46,7 +46,7 @@ app.options('*', cors());
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  const userRepo = AppDataSource.getRepository(Users);
+  const userRepo = AppDataSource.getRepository(User);
   const users = await userRepo.find();
   res.status(200).send(users);
 });
