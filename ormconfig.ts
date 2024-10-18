@@ -1,3 +1,6 @@
+// Load .env file to fix the following issue https://github.com/typeorm/typeorm/issues/3894
+import 'dotenv/config';
+
 import { DataSource } from 'typeorm';
 import { dbConfig } from './src/config/app.config';
 
@@ -13,4 +16,5 @@ export const AppDataSource = new DataSource({
   entities: [`${__dirname}/src/entities/*.ts`],
   migrations: [`${__dirname}/database/migrations/*.ts`],
   subscribers: [],
+  migrationsTableName: 'migrations',
 });

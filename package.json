@@ -1,5 +1,5 @@
 {
-  "name": "typescript-express-postgre",
+  "name": "typescript-express-postgres",
   "version": "1.0.0",
   "author": "Abdul Saboor Khan",
   "license": "MIT",
@@ -9,13 +9,17 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon -e ts,js --exec ts-node ./src/index.ts",
-    "start:prod": "pm2 start dist/server.js --name typescript-express-postgre",
-    "stop:prod": "pm2 stop typescript-express-postgre",
-    "lint": "eslint */**/*.ts --ignore-pattern node_modules/",
+    "start:prod": "pm2 start ./dist/server.js --name typescript-express-postgres",
+    "stop:prod": "pm2 stop typescript-express-postgres",
+    "lint": "eslint */**/*.ts --ignore-pattern ./node_modules/",
     "prettify": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "prepare": "husky",
     "test": "jest",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node ./node_modules/typeorm/cli -d ./ormconfig.ts",
+    "migration:create": "cross-var ts-node ./node_modules/typeorm/cli migration:create ./database/migrations/$npm_config_name",
+    "migration:generate": "cross-var npm run typeorm -- migration:generate ./database/migrations/$npm_config_name",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert"
   },
   "husky": {
     "hooks": {
@@ -31,6 +35,7 @@
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "cross-var": "^1.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
