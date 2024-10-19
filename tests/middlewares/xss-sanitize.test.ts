@@ -1,6 +1,6 @@
 import { NextFunction } from 'express';
 import httpMocks from 'node-mocks-http';
-import xssSanitize from '@middlewares/xss-sanitize.middleware';
+import xssSanitize from '@middlewares/xss.middleware';
 
 describe('XSS Sanitize Middleware', () => {
   test('should return next if request body is undefined', () => {

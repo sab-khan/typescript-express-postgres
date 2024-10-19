@@ -8,7 +8,7 @@ import cors from 'cors';
 import morgan from '@config/morgan.config';
 import { appConfig } from '@config/app.config';
 import errorHandler from '@middlewares/error.middleware';
-import xssSanitize from '@middlewares/xss-sanitize.middleware';
+import xssSanitize from '@middlewares/xss.middleware';
 import { AppDataSource } from '../ormconfig';
 import { User } from '@entitiesuser.entity';
 
