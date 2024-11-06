@@ -10,7 +10,7 @@ import { appConfig } from '@config/app.config';
 import errorHandler from '@middlewares/error.middleware';
 import xssSanitize from '@middlewares/xss.middleware';
 import { AppDataSource } from '../ormconfig';
-import { User } from '@entitiesuser.entity';
+import { User } from '@entities/user.entity';
 
 const app = express();
 

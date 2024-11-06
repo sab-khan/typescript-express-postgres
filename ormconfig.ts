@@ -2,7 +2,7 @@
 import 'dotenv/config';
 
 import { DataSource } from 'typeorm';
-import { dbConfig } from './src/config/app.config';
+import { appConfig, dbConfig } from './src/config/app.config';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: dbConfig.name,
   synchronize: false,
   logging: false,
-  entities: [`${__dirname}/src/entities/*.ts`],
+  entities: [appConfig.nodeEnv === 'production' ? `dist/**/*.entity.js` : `src/**/*.entity.ts`],
   migrations: [`${__dirname}/database/migrations/*.ts`],
   subscribers: [],
   migrationsTableName: 'migrations',

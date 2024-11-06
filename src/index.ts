@@ -24,5 +24,11 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
+// log uncaught rejection and exit
+process.on('unhandledRejection', (err) => {
+  logger.error(err);
+  process.exit(1);
+});
+
 // boostrap the application
 initApp();

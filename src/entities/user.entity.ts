@@ -1,13 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   id: number | undefined;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   name: string | undefined;
-
-  @Column({ type: 'text', nullable: false })
-  dept: string | undefined;
 }
